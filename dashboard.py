@@ -61,6 +61,17 @@ This dashboard provides a user-friendly interface for the Polymarket Earnings To
 Automatically analyze earnings call transcripts to identify mispriced prediction markets.
 """)
 
+# --- CORRECTED PROGRESS LOGIC ---
+# Define the progress for each of the 6 steps
+progress_steps = {
+    0: {"start": 0.0, "end": 1/6, "name": "Fetching Transcripts"},
+    1: {"start": 1/6, "end": 2/6, "name": "Fetching Market Data"},
+    2: {"start": 2/6, "end": 3/6, "name": "Analyzing Historical Transcripts"},
+    3: {"start": 3/6, "end": 4/6, "name": "Searching Recent News"},
+    4: {"start": 4/6, "end": 5/6, "name": "Calculating Edges"},
+    5: {"start": 5/6, "end": 1.0, "name": "Generating Report"},
+}
+
 # Sidebar for configuration
 st.sidebar.title("Analysis Configuration")
 
@@ -110,9 +121,8 @@ days_until_earnings = st.sidebar.number_input("Days Until Earnings", min_value=0
 
 # --- CORRECTED FUNCTION ---
 # Function to run a script and update progress
-# FIX: Renamed parameter to avoid variable scoping issue with st.empty()
 def run_script(script_name, args, progress_message, progress_value):
-    # Create the st.empty object here to avoid conflict
+    # Create st.empty object here to avoid conflict
     progress_text = st.empty()
     progress_bar = st.progress(0)
     
@@ -138,7 +148,7 @@ tab1, tab2, tab3 = st.tabs(["Analysis", "Results", "Monitoring"])
 with tab1:
     st.markdown('<h2 class="step-header">Analysis Workflow</h2>', unsafe_allow_html=True)
     
-    # Progress bar
+    # Progress bar and status text
     progress_bar = st.progress(0)
     progress_text = st.empty()
     
@@ -153,11 +163,16 @@ with tab1:
             st.session_state.current_step = 0
             st.session_state.analysis_complete = False
             st.session_state.results = {}
-            # CORRECTED: Use st.rerun() instead of st.experimental_rerun()
             st.rerun()
     
     # Analysis workflow
     if st.session_state.analysis_started and not st.session_state.analysis_complete:
+        current_step_info = progress_steps[st.session_state.current_step]
+        
+        # Update overall progress bar for the current step
+        progress_bar.progress(current_step_info["start"])
+        progress_text.text(f"Step {st.session_state.current_step + 1}/6: {current_step_info['name']}...")
+        
         # Create output directories
         output_dir = f"data/{company.lower().replace(' ', '_')}_{quarter.replace(' ', '_')}"
         os.makedirs(output_dir, exist_ok=True)
@@ -168,18 +183,19 @@ with tab1:
         if st.session_state.current_step == 0:
             transcript_files = []
             for i, url in enumerate(transcript_urls):
+                # Calculate progress within this step
+                step_progress = current_step_info["start"] + ((i + 1) / len(transcript_urls)) * (current_step_info["end"] - current_step_info["start"])
+                progress_bar.progress(step_progress)
+                progress_text.text(f"Fetching transcript {i+1}/{len(transcript_urls)}...")
+                
                 output_file = f"transcripts/{company.lower().replace(' ', '_')}_Q{i+1}_{quarter.replace(' ', '_')}.md"
-                success = run_script(
-                    "scripts/fetch_transcript.py",
-                    ["--url", url, "--output", output_file],
-                    f"Fetching transcript {i+1}/{len(transcript_urls)}",
-                    (i+1) / (len(transcript_urls) * 6) * 100
-                )
-                if success:
-                    transcript_files.append(output_file)
-                else:
+                cmd = ["python", "scripts/fetch_transcript.py", "--url", url, "--output", output_file]
+                process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                stdout, stderr = process.communicate()
+                
+                if process.returncode != 0:
+                    st.error(f"Error fetching transcript {i+1}: {stderr.decode('utf-8')}")
                     st.session_state.analysis_started = False
-                    st.error("Failed to fetch transcripts. Please check the URLs and try again.")
                     st.rerun()
             
             st.session_state.results['transcript_files'] = transcript_files
@@ -193,7 +209,7 @@ with tab1:
                 "scripts/fetch_market.py",
                 ["--event-url", event_url, "--output", markets_file],
                 "Fetching market data",
-                20
+                current_step_info["end"]
             )
             
             if success:
@@ -208,13 +224,12 @@ with tab1:
         # Step 2: Analyze historical transcripts
         if st.session_state.current_step == 2:
             historical_file = f"{output_dir}/historical.json"
-            # Create a single string of file paths for the script
             transcripts_pattern = " ".join(st.session_state.results['transcript_files'])
             success = run_script(
                 "scripts/analyze_transcripts.py",
                 ["--transcripts", transcripts_pattern, "--words", st.session_state.results['markets_file'], "--output", historical_file],
                 "Analyzing historical transcripts",
-                40
+                current_step_info["end"]
             )
             
             if success:
@@ -233,7 +248,7 @@ with tab1:
                 "scripts/search_news.py",
                 ["--words", st.session_state.results['markets_file'], "--company", company, "--date", datetime.now().strftime("%Y-%m-%d"), "--output", news_file],
                 "Searching recent news",
-                60
+                current_step_info["end"]
             )
             
             if success:
@@ -252,7 +267,7 @@ with tab1:
                 "scripts/calculate_edges.py",
                 ["--historical", st.session_state.results['historical_file'], "--markets", st.session_state.results['markets_file'], "--news", st.session_state.results['news_file'], "--news-weight", str(news_weight), "--output", edges_file],
                 "Calculating edges",
-                80
+                current_step_info["end"]
             )
             
             if success:
@@ -271,12 +286,13 @@ with tab1:
                 "scripts/generate_report.py",
                 ["--edges", st.session_state.results['edges_file'], "--company", company, "--quarter", quarter, "--output", report_file],
                 "Generating report",
-                100
+                current_step_info["end"]
             )
             
             if success:
                 st.session_state.results['report_file'] = report_file
                 st.session_state.analysis_complete = True
+                progress_bar.progress(1.0)
                 progress_text.text("Analysis complete!")
                 st.success("Analysis completed successfully!")
                 st.balloons()
@@ -291,7 +307,9 @@ with tab1:
         if st.session_state.analysis_complete:
             st.success("Analysis completed successfully! Check the Results tab.")
         else:
-            st.info(f"Analysis in progress... Current step: {st.session_state.current_step + 1}/6")
+            current_step_info = progress_steps[st.session_state.current_step]
+            progress_bar.progress(current_step_info["start"])
+            progress_text.text(f"Step {st.session_state.current_step + 1}/6: {current_step_info['name']}...")
 
 with tab2:
     st.markdown('<h2 class="step-header">Analysis Results</h2>', unsafe_allow_html=True)
@@ -410,7 +428,7 @@ with tab3:
                         "scripts/monitor_markets.py",
                         ["--baseline", st.session_state.results['edges_file'], "--event-url", event_url, "--days-until-earnings", str(days_until), "--output", edges_file, "--changes", changes_file],
                         "Updating market prices",
-                        100
+                        1.0 # Set progress to 100% for this action
                     )
                     
                     if success:
