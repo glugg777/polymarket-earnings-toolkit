@@ -148,7 +148,7 @@ with tab1:
             st.session_state.current_step = 0
             st.session_state.analysis_complete = False
             st.session_state.results = {}
-            st.experimental_rerun()
+            st.rerun()
     
     # Analysis workflow
     if st.session_state.analysis_started and not st.session_state.analysis_complete:
@@ -174,11 +174,11 @@ with tab1:
                 else:
                     st.session_state.analysis_started = False
                     st.error("Failed to fetch transcripts. Please check the URLs and try again.")
-                    st.experimental_rerun()
+                    st.rerun()
             
             st.session_state.results['transcript_files'] = transcript_files
             st.session_state.current_step = 1
-            st.experimental_rerun()
+            st.rerun()
         
         # Step 1: Fetch market data
         if st.session_state.current_step == 1:
@@ -193,11 +193,11 @@ with tab1:
             if success:
                 st.session_state.results['markets_file'] = markets_file
                 st.session_state.current_step = 2
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.session_state.analysis_started = False
                 st.error("Failed to fetch market data. Please check the event URL and try again.")
-                st.experimental_rerun()
+                st.rerun()
         
         # Step 2: Analyze historical transcripts
         if st.session_state.current_step == 2:
@@ -213,11 +213,11 @@ with tab1:
             if success:
                 st.session_state.results['historical_file'] = historical_file
                 st.session_state.current_step = 3
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.session_state.analysis_started = False
                 st.error("Failed to analyze transcripts. Please check the transcript files and try again.")
-                st.experimental_rerun()
+                st.rerun()
         
         # Step 3: Search recent news
         if st.session_state.current_step == 3:
@@ -232,11 +232,11 @@ with tab1:
             if success:
                 st.session_state.results['news_file'] = news_file
                 st.session_state.current_step = 4
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.session_state.analysis_started = False
                 st.error("Failed to search news. Please check your Perplexity API key and try again.")
-                st.experimental_rerun()
+                st.rerun()
         
         # Step 4: Calculate edges
         if st.session_state.current_step == 4:
@@ -251,11 +251,11 @@ with tab1:
             if success:
                 st.session_state.results['edges_file'] = edges_file
                 st.session_state.current_step = 5
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.session_state.analysis_started = False
                 st.error("Failed to calculate edges. Please check the input files and try again.")
-                st.experimental_rerun()
+                st.rerun()
         
         # Step 5: Generate report
         if st.session_state.current_step == 5:
@@ -273,11 +273,11 @@ with tab1:
                 progress_text.text("Analysis complete!")
                 st.success("Analysis completed successfully!")
                 st.balloons()
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.session_state.analysis_started = False
                 st.error("Failed to generate report. Please check the input files and try again.")
-                st.experimental_rerun()
+                st.rerun()
     
     # Display analysis status
     if st.session_state.analysis_started:
