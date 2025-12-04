@@ -3,8 +3,7 @@ import os
 import subprocess
 import json
 import pandas as pd
-from datetime import datetime, timedelta
-import time
+from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go
 from pathlib import Path
@@ -109,9 +108,15 @@ st.sidebar.subheader("Analysis Parameters")
 news_weight = st.sidebar.slider("News Weight", min_value=0.0, max_value=1.0, value=0.3, step=0.1)
 days_until_earnings = st.sidebar.number_input("Days Until Earnings", min_value=0, max_value=30, value=2)
 
+# --- CORRECTED FUNCTION ---
 # Function to run a script and update progress
-def run_script(script_name, args, progress_text, progress_value):
-    progress_text.text(f"Running: {progress_text}...")
+# FIX: Renamed parameter to avoid variable scoping issue with st.empty()
+def run_script(script_name, args, progress_message, progress_value):
+    # Create the st.empty object here to avoid conflict
+    progress_text = st.empty()
+    progress_bar = st.progress(0)
+    
+    progress_text.text(f"Running: {progress_message}...")
     progress_bar.progress(progress_value)
     
     # Build command
@@ -148,6 +153,7 @@ with tab1:
             st.session_state.current_step = 0
             st.session_state.analysis_complete = False
             st.session_state.results = {}
+            # CORRECTED: Use st.rerun() instead of st.experimental_rerun()
             st.rerun()
     
     # Analysis workflow
@@ -202,6 +208,7 @@ with tab1:
         # Step 2: Analyze historical transcripts
         if st.session_state.current_step == 2:
             historical_file = f"{output_dir}/historical.json"
+            # Create a single string of file paths for the script
             transcripts_pattern = " ".join(st.session_state.results['transcript_files'])
             success = run_script(
                 "scripts/analyze_transcripts.py",
