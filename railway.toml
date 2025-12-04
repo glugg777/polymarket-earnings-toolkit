@@ -1,0 +1,27 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+healthcheckPath = "/_stcore/health"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
+
+[[services]]
+name = "app"
+
+[services.variables]
+PORT = "8501"
+
+# This section is crucial for saving your work!
+[[services.volumes]]
+name = "data"
+mountPath = "/app/data"
+
+[[services.volumes]]
+name = "transcripts"
+mountPath = "/app/transcripts"
+
+[[services.volumes]]
+name = "reports"
+mountPath = "/app/reports"

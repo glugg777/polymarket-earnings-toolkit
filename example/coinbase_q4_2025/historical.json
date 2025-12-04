@@ -1,0 +1,461 @@
+{
+  "analysis": [
+    {
+      "market_question": "Will Coinbase say \"Margin\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 2,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 2,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 4,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 2,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 2.5,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Crypto Winter\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q3_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q2_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q1_2025": {
+          "count": 0,
+          "met_threshold": false
+        }
+      },
+      "mention_rate": 0.0,
+      "avg_count": 0.0,
+      "historical_probability": 0.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Prediction Market\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q3_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q2_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q1_2025": {
+          "count": 0,
+          "met_threshold": false
+        }
+      },
+      "mention_rate": 0.0,
+      "avg_count": 0.0,
+      "historical_probability": 0.0
+    },
+    {
+      "market_question": "Will Coinbase say \"SEC / Securities and Exchange Commission\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 2,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 7,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 2,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 4,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 3.75,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Custodial / Custody\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 5,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 10,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 8,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 5,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 7.0,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Regulator / Regulatory / Regulation\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 17,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 7,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 8,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 10,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 10.5,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Institution / Institutional\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 5,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 5,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 14,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 4,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 7.0,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Staking / Stake\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 4,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 3,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 1,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 7,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 3.75,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Stablecoin\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 18,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 10,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 15,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 13,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 14.0,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Shutdown / Shut Down\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q3_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q2_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q1_2025": {
+          "count": 0,
+          "met_threshold": false
+        }
+      },
+      "mention_rate": 0.0,
+      "avg_count": 0.0,
+      "historical_probability": 0.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Subscription\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 5,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 4,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 3,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 6,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 4.5,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Bitcoin\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 9,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 7,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 6,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 4,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 6.5,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Web3\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q3_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q2_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q1_2025": {
+          "count": 0,
+          "met_threshold": false
+        }
+      },
+      "mention_rate": 0.0,
+      "avg_count": 0.0,
+      "historical_probability": 0.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Trading Volume\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 9,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 9,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 7,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 10,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 8.75,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"Ethereum / ETH\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 6,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 4,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 1,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 1,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 1.0,
+      "avg_count": 3.0,
+      "historical_probability": 1.0
+    },
+    {
+      "market_question": "Will Coinbase say \"International\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 3,
+          "met_threshold": true
+        },
+        "Q3_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q2_2025": {
+          "count": 10,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 7,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 0.75,
+      "avg_count": 5.0,
+      "historical_probability": 0.75
+    },
+    {
+      "market_question": "Will Coinbase say \"Blockchain\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q3_2025": {
+          "count": 3,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 1,
+          "met_threshold": true
+        },
+        "Q1_2025": {
+          "count": 1,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 0.75,
+      "avg_count": 1.25,
+      "historical_probability": 0.75
+    },
+    {
+      "market_question": "Will Coinbase say \"Decentralized Exchange / DEX\" during earnings call?",
+      "threshold": 1,
+      "quarters": {
+        "Q4_2024": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q3_2025": {
+          "count": 2,
+          "met_threshold": true
+        },
+        "Q2_2025": {
+          "count": 0,
+          "met_threshold": false
+        },
+        "Q1_2025": {
+          "count": 2,
+          "met_threshold": true
+        }
+      },
+      "mention_rate": 0.5,
+      "avg_count": 1.0,
+      "historical_probability": 0.5
+    }
+  ],
+  "quarters_analyzed": [
+    "Q1_2025",
+    "Q2_2025",
+    "Q3_2025",
+    "Q4_2024"
+  ],
+  "total_quarters": 4
+}

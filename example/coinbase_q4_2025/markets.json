@@ -1,0 +1,291 @@
+{
+  "event": {
+    "title": "What will Coinbase say during their next earnings call?",
+    "slug": "earnings-mentions-coinbase-2025-10-29",
+    "date": "2025-10-29T21:00:00Z",
+    "volume": 1300.50142,
+    "active": true,
+    "closed": false
+  },
+  "markets": [
+    {
+      "market_question": "Will Coinbase say \"Margin\" during earnings call?",
+      "yes_price": 0.745,
+      "no_price": 0.255,
+      "best_bid": 0.56,
+      "best_ask": 0.99,
+      "spread": 0.42999999999999994,
+      "volume": 60.416665,
+      "liquidity": 1351.51,
+      "market_id": "647155",
+      "threshold": 1,
+      "words": [
+        "margin"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Crypto Winter\" during earnings call?",
+      "yes_price": 0.365,
+      "no_price": 0.635,
+      "best_bid": 0.04,
+      "best_ask": 0.99,
+      "spread": 0.95,
+      "volume": 20.201,
+      "liquidity": 785.0,
+      "market_id": "647159",
+      "threshold": 1,
+      "words": [
+        "crypto winter"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Prediction Market\" during earnings call?",
+      "yes_price": 0.62,
+      "no_price": 0.38,
+      "best_bid": 0.1,
+      "best_ask": 0.99,
+      "spread": 0.89,
+      "volume": 1.0204,
+      "liquidity": 1278.37,
+      "market_id": "647156",
+      "threshold": 1,
+      "words": [
+        "prediction market"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"SEC / Securities and Exchange Commission\" during earnings call?",
+      "yes_price": 0.63,
+      "no_price": 0.37,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 0.0,
+      "liquidity": 1449.15,
+      "market_id": "647145",
+      "threshold": 1,
+      "words": [
+        "sec",
+        "securities and exchange commission"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Custodial / Custody\" during earnings call?",
+      "yes_price": 0.87,
+      "no_price": 0.13,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 15.467165,
+      "liquidity": 615.4100000000001,
+      "market_id": "647150",
+      "threshold": 1,
+      "words": [
+        "custodial",
+        "custody"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Regulator / Regulatory / Regulation\" during earnings call?",
+      "yes_price": 0.94,
+      "no_price": 0.06,
+      "best_bid": 0.01,
+      "best_ask": 0.999,
+      "spread": 0.989,
+      "volume": 127.707284,
+      "liquidity": 15177.72,
+      "market_id": "647149",
+      "threshold": 1,
+      "words": [
+        "regulator",
+        "regulatory",
+        "regulation"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Institution / Institutional\" during earnings call?",
+      "yes_price": 0.78,
+      "no_price": 0.22,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 225.369783,
+      "liquidity": 473.63,
+      "market_id": "647151",
+      "threshold": 1,
+      "words": [
+        "institution",
+        "institutional"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Staking / Stake\" during earnings call?",
+      "yes_price": 0.56,
+      "no_price": 0.44,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 100.0,
+      "liquidity": 1025.23,
+      "market_id": "647148",
+      "threshold": 1,
+      "words": [
+        "staking",
+        "stake"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Stablecoin\" during earnings call?",
+      "yes_price": 0.835,
+      "no_price": 0.165,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 129.411763,
+      "liquidity": 454.41,
+      "market_id": "647144",
+      "threshold": 1,
+      "words": [
+        "stablecoin"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Shutdown / Shut Down\" during earnings call?",
+      "yes_price": 0.46,
+      "no_price": 0.54,
+      "best_bid": 0.04,
+      "best_ask": 0.99,
+      "spread": 0.95,
+      "volume": 0.0,
+      "liquidity": 1061.0,
+      "market_id": "647160",
+      "threshold": 1,
+      "words": [
+        "shutdown",
+        "shut down"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Subscription\" during earnings call?",
+      "yes_price": 0.605,
+      "no_price": 0.395,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 100.0,
+      "liquidity": 970.21,
+      "market_id": "647147",
+      "threshold": 1,
+      "words": [
+        "subscription"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Bitcoin\" during earnings call?",
+      "yes_price": 0.94,
+      "no_price": 0.06,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 187.100347,
+      "liquidity": 15192.44,
+      "market_id": "647143",
+      "threshold": 1,
+      "words": [
+        "bitcoin"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Web3\" during earnings call?",
+      "yes_price": 0.505,
+      "no_price": 0.495,
+      "best_bid": 0.04,
+      "best_ask": 0.99,
+      "spread": 0.95,
+      "volume": 100.0,
+      "liquidity": 910.0,
+      "market_id": "647158",
+      "threshold": 1,
+      "words": [
+        "web3"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Trading Volume\" during earnings call?",
+      "yes_price": 0.69,
+      "no_price": 0.31,
+      "best_bid": 0.02,
+      "best_ask": 0.99,
+      "spread": 0.97,
+      "volume": 51.3265,
+      "liquidity": 1837.0900000000001,
+      "market_id": "647146",
+      "threshold": 1,
+      "words": [
+        "trading volume"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Ethereum / ETH\" during earnings call?",
+      "yes_price": 0.915,
+      "no_price": 0.085,
+      "best_bid": 0.01,
+      "best_ask": 0.99,
+      "spread": 0.98,
+      "volume": 6.164733,
+      "liquidity": 593.8199999999999,
+      "market_id": "647152",
+      "threshold": 1,
+      "words": [
+        "ethereum",
+        "eth"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"International\" during earnings call?",
+      "yes_price": 0.52,
+      "no_price": 0.48,
+      "best_bid": 0.07,
+      "best_ask": 0.99,
+      "spread": 0.9199999999999999,
+      "volume": 0.0,
+      "liquidity": 1090.46,
+      "market_id": "647153",
+      "threshold": 1,
+      "words": [
+        "international"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Blockchain\" during earnings call?",
+      "yes_price": 0.78,
+      "no_price": 0.22,
+      "best_bid": 0.02,
+      "best_ask": 0.99,
+      "spread": 0.97,
+      "volume": 150.0,
+      "liquidity": 820.0,
+      "market_id": "647154",
+      "threshold": 1,
+      "words": [
+        "blockchain"
+      ]
+    },
+    {
+      "market_question": "Will Coinbase say \"Decentralized Exchange / DEX\" during earnings call?",
+      "yes_price": 0.53,
+      "no_price": 0.47,
+      "best_bid": 0.02,
+      "best_ask": 0.99,
+      "spread": 0.97,
+      "volume": 26.31578,
+      "liquidity": 1371.0,
+      "market_id": "647157",
+      "threshold": 1,
+      "words": [
+        "decentralized exchange",
+        "dex"
+      ]
+    }
+  ]
+}

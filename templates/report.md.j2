@@ -1,0 +1,169 @@
+# Earnings Betting Portfolio Report
+
+**Generated**: {{ metadata.generated_at }}
+**Company**: {{ company_name }}
+**Quarter**: {{ quarter }}
+
+---
+
+## Executive Summary
+
+**Total Markets Analyzed**: {{ metadata.summary.total_markets }}
+**Active Positions**: {{ metadata.summary.strong_conviction + metadata.summary.moderate_conviction }}
+**Portfolio Allocation**: {{ "{:.1%}".format(metadata.allocation.total_scaled) }} of bankroll
+
+### Conviction Breakdown
+- **STRONG** (>20% edge): {{ metadata.summary.strong_conviction }} markets, {{ "{:.1%}".format(strong_total_allocation) }}
+- **MODERATE** (10-20% edge): {{ metadata.summary.moderate_conviction }} markets, {{ "{:.1%}".format(moderate_total_allocation) }}
+- **PASS** (<10% edge): {{ metadata.summary.pass }} markets, 0%
+
+{% if metadata.allocation.was_scaled %}
+⚠️ **Note**: Positions scaled {{ "{:.1%}".format(metadata.allocation.scale_factor) }} to fit {{ "{:.0%}".format(metadata.configuration.max_allocation) }} maximum allocation limit.
+{% endif %}
+
+---
+
+## Market Context
+
+### Portfolio Overview
+- **Configuration**: {{ "{:.0%}".format(metadata.configuration.news_weight) }} news weight, {{ "{:.1%}".format(metadata.configuration.max_spread_cross) }} max spread cross
+- **Data Sources**:
+  - Historical analysis: {{ metadata.historical_data }}
+  - Market prices: {{ metadata.markets_data }}
+  - News research: {{ metadata.news_data }}
+
+### Risk Profile
+- **Highest Edge**: {{ "{:+.1f}".format(highest_edge) }}% ({{ highest_edge_market[:60] }}...)
+- **Average Edge (Active)**: {{ "{:+.1f}".format(avg_active_edge) }}%
+- **Spread Environment**: {{ "{:.1%}".format(avg_spread) }} average spread
+
+---
+
+## STRONG Conviction Recommendations (>20% edge)
+
+{% if strong_conviction|length > 0 %}
+{% for rec in strong_conviction %}
+### {{ loop.index }}. {{ rec.market_question }}
+
+**ACTION**: {{ rec.action_detail }}
+**Position Size**: {{ "{:.1%}".format(rec.position_size) }} of bankroll{% if rec.raw_position_size != rec.position_size %} (scaled from {{ "{:.1%}".format(rec.raw_position_size) }}){% endif %}
+
+**Edge**: {{ "{:+.1f}".format(rec.edge_pct) }}% ({{ rec.market_type }})
+
+**Pricing**:
+- Fair Value: {{ "{:.1%}".format(rec.fair_value) }}
+- Market Price: {{ "{:.1%}".format(rec.market_price) }} ({{ rec.side }})
+- Limit Order: ${{ "{:.2f}".format(rec.limit_price_target) }} (range: ${{ "{:.2f}".format(rec.limit_price_min) }}-${{ "{:.2f}".format(rec.limit_price_max) }})
+- Spread: {{ "{:.1%}".format(rec.spread) }}
+
+**Rationale**:
+- {{ rec.rationale.historical }}
+- {{ rec.rationale.market }}
+- {{ rec.rationale.news }}
+
+---
+
+{% endfor %}
+{% else %}
+*No STRONG conviction opportunities identified (all edges <20%).*
+
+{% endif %}
+
+## MODERATE Conviction Recommendations (10-20% edge)
+
+{% if moderate_conviction|length > 0 %}
+{% for rec in moderate_conviction %}
+### {{ loop.index }}. {{ rec.market_question }}
+
+**ACTION**: {{ rec.action_detail }}
+**Position Size**: {{ "{:.1%}".format(rec.position_size) }} of bankroll{% if rec.raw_position_size != rec.position_size %} (scaled from {{ "{:.1%}".format(rec.raw_position_size) }}){% endif %}
+
+**Edge**: {{ "{:+.1f}".format(rec.edge_pct) }}% ({{ rec.market_type }})
+
+**Pricing**:
+- Fair Value: {{ "{:.1%}".format(rec.fair_value) }}
+- Market Price: {{ "{:.1%}".format(rec.market_price) }} ({{ rec.side }})
+- Limit Order: ${{ "{:.2f}".format(rec.limit_price_target) }} (range: ${{ "{:.2f}".format(rec.limit_price_min) }}-${{ "{:.2f}".format(rec.limit_price_max) }})
+
+**Rationale**:
+- {{ rec.rationale.historical }}
+- {{ rec.rationale.market }}
+- {{ rec.rationale.news }}
+
+---
+
+{% endfor %}
+{% else %}
+*No MODERATE conviction opportunities identified (all edges either >20% or <10%).*
+
+{% endif %}
+
+## Markets to Pass (<10% edge)
+
+{% if pass_recommendations|length > 0 %}
+The following markets did not meet the minimum edge threshold for position sizing:
+
+{% for rec in pass_recommendations %}
+- **{{ rec.market_question }}**: {{ "{:+.1f}".format(rec.edge_pct) }}% edge (Fair: {{ "{:.1%}".format(rec.fair_value) }}, Market: {{ "{:.1%}".format(rec.market_price) }})
+{% endfor %}
+
+{% else %}
+*All markets met minimum edge threshold - no passes.*
+
+{% endif %}
+
+---
+
+## Portfolio Allocation Summary
+
+| Conviction Tier | Markets | Total Allocation | Avg Edge | Avg Position |
+|----------------|---------|------------------|----------|--------------|
+| STRONG | {{ metadata.summary.strong_conviction }} | {{ "{:.1%}".format(strong_total_allocation) }} | {{ "{:+.1f}".format(strong_avg_edge) }}% | {{ "{:.1%}".format(strong_avg_position) }} |
+| MODERATE | {{ metadata.summary.moderate_conviction }} | {{ "{:.1%}".format(moderate_total_allocation) }} | {{ "{:+.1f}".format(moderate_avg_edge) }}% | {{ "{:.1%}".format(moderate_avg_position) }} |
+| PASS | {{ metadata.summary.pass }} | 0.0% | {{ "{:+.1f}".format(pass_avg_edge) }}% | 0.0% |
+| **TOTAL** | **{{ metadata.summary.total_markets }}** | **{{ "{:.1%}".format(metadata.allocation.total_scaled) }}** | **{{ "{:+.1f}".format(overall_avg_edge) }}%** | **-** |
+
+---
+
+## Methodology
+
+### Edge Calculation
+- **Historical Probability**: Baseline from earnings transcript analysis ({{ historical_quarters }} quarters analyzed)
+- **News Adjustment**: {{ "{:.0%}".format(metadata.configuration.news_weight) }} weight applied to recent news sentiment and relevance
+- **Fair Value**: `historical_probability + (news_relevance/10 × news_weight × direction_multiplier)`
+- **Edge**: `fair_value - market_price`
+
+### Position Sizing
+- **STRONG** (>20% edge): 25% base position size
+- **MODERATE** (10-20% edge): 15% base position size
+- **PASS** (<10% edge): 0% position size
+{% if metadata.allocation.was_scaled %}
+- **Scaling**: All positions scaled by {{ "{:.1%}".format(metadata.allocation.scale_factor) }} to meet {{ "{:.0%}".format(metadata.configuration.max_allocation) }} max allocation
+{% endif %}
+
+### Limit Order Strategy
+- **Hybrid Maker/Taker**: Considers both bid (maker) and ask (taker) sides
+- **Safety Rail**: Won't cross spreads wider than {{ "{:.1%}".format(metadata.configuration.max_spread_cross) }}
+- **Target Price**: `min(fair_value - 0.05, best_bid + 0.02, best_ask - 0.02)`
+- **Order Range**: Target ± 2 cents for flexibility
+
+---
+
+## Report Metadata
+
+**Generated At**: {{ metadata.generated_at }}
+**Configuration**:
+- News Weight: {{ "{:.0%}".format(metadata.configuration.news_weight) }}
+- Max Spread Cross: {{ "{:.1%}".format(metadata.configuration.max_spread_cross) }}
+- Max Portfolio Allocation: {{ "{:.0%}".format(metadata.configuration.max_allocation) }}
+
+**Scaling Applied**: {{ "Yes" if metadata.allocation.was_scaled else "No" }}{% if metadata.allocation.was_scaled %} ({{ "{:.1%}".format(metadata.allocation.scale_factor) }} scale factor){% endif %}
+
+**Data Inputs**:
+- Historical: `{{ metadata.historical_data }}`
+- Markets: `{{ metadata.markets_data }}`
+- News: `{{ metadata.news_data }}`
+
+---
+
+*This report is generated for informational purposes only and does not constitute investment advice. All betting involves risk.*
