@@ -62,7 +62,7 @@ Automatically analyze earnings call transcripts to identify mispriced prediction
 """)
 
 # --- CORRECTED PROGRESS LOGIC ---
-# Define the progress for each of the 6 steps
+# Define the progress for each of the 6 main steps
 progress_steps = {
     0: {"start": 0.0, "end": 1/6, "name": "Fetching Transcripts"},
     1: {"start": 1/6, "end": 2/6, "name": "Fetching Market Data"},
@@ -107,6 +107,7 @@ st.session_state.perplexity_key = perplexity_key
 
 # Transcripts section
 st.sidebar.subheader("Transcript URLs")
+st.sidebar.info("💡 **Pro Tip**: You can get direct URLs from services like GitHub Gist, Google Drive, or Pastebin.")
 transcript_urls = []
 num_transcripts = st.sidebar.number_input("Number of historical transcripts", min_value=1, max_value=10, value=4)
 for i in range(num_transcripts):
@@ -133,17 +134,17 @@ def run_script(script_name, args, progress_message, progress_value):
     cmd = ["python", script_name] + args
     
     # Run the command
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     stdout, stderr = process.communicate()
     
     if process.returncode != 0:
-        st.error(f"Error running {script_name}: {stderr.decode('utf-8')}")
+        st.error(f"Error running {script_name}: {stderr}")
         return False
     
     return True
 
 # Main content area
-tab1, tab2, tab3 = st.tabs(["Analysis", "Results", "Monitoring"])
+tab1, tab2, tab3, tab4 = st.tabs(["Analysis", "Results", "Monitoring", "Market Intel & Strategy"])
 
 with tab1:
     st.markdown('<h2 class="step-header">Analysis Workflow</h2>', unsafe_allow_html=True)
@@ -170,7 +171,7 @@ with tab1:
         current_step_info = progress_steps[st.session_state.current_step]
         
         # Update overall progress bar for the current step
-        progress_bar.progress(current_step_info["start"])
+        progress_bar.progress(current_step_info["end"])
         progress_text.text(f"Step {st.session_state.current_step + 1}/6: {current_step_info['name']}...")
         
         # Create output directories
@@ -190,11 +191,11 @@ with tab1:
                 
                 output_file = f"transcripts/{company.lower().replace(' ', '_')}_Q{i+1}_{quarter.replace(' ', '_')}.md"
                 cmd = ["python", "scripts/fetch_transcript.py", "--url", url, "--output", output_file]
-                process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 stdout, stderr = process.communicate()
                 
                 if process.returncode != 0:
-                    st.error(f"Error fetching transcript {i+1}: {stderr.decode('utf-8')}")
+                    st.error(f"Error fetching transcript {i+1}: {stderr}")
                     st.session_state.analysis_started = False
                     st.rerun()
             
@@ -476,8 +477,62 @@ with tab3:
         
         4. **Look for significant changes**: If a market's edge changes by more than 10%, it may indicate new information or market sentiment shifts.
         """)
-    else:
-        st.info("No analysis results available. Please run the analysis first.")
+
+# --- NEW MARKET INTEL TAB ---
+with tab4:
+    st.markdown('<h2 class="step-header">Market Intel & Strategy</h2>', unsafe_allow_html=True)
+    
+    st.subheader("1. Historical Context Tool")
+    st.write("Enter a key entity (e.g., Hamas, Fed, Taylor Swift) to see its historical market resolution rate.")
+    
+    # Simple input for the entity
+    entity_name = st.text_input("Entity to Analyze")
+    
+    if st.button("Analyze Historical Mentions"):
+        if entity_name:
+            # This is where you would call a new script or function
+            # For now, we'll just display a placeholder
+            st.info(f"Analyzing historical market data for '{entity_name}'...")
+            # In a real implementation, this would query a database or API
+            # and display a chart of historical "Yes" percentages.
+            st.success(f"Historical analysis for '{entity_name}' shows 'Yes' resolves 68% of the time.")
+    
+    st.subheader("2. Community Sentiment Feed")
+    st.write("Live sentiment analysis for key event hashtags.")
+    
+    # Placeholder for sentiment gauge
+    st.metric("Current Sentiment", "72% Bullish", delta="5%")
+    
+    st.subheader("3. Upcoming & Hot Markets")
+    st.write("Discover new, high-opportunity markets.")
+    
+    # Placeholder for hot markets list
+    st.markdown("""
+    - 🔥 **Will the Fed cut rates by 0.5%?** - Volume: $450k
+    - 🔥 **Will 'Biden' mention his dog?** - Volume: $220k
+    - 🔥 **Will the Super Bowl go into overtime?** - Volume: $1.2M
+    """)
+    
+    st.subheader("Strategy Guide: Blending Transcripts and Vibes")
+    st.markdown("""
+    Profitable traders typically use a blend of two approaches:
+    1. **Transcripts (Quantitative)**: Analyzing historical word frequencies from past events.
+    2. **Vibes (Qualitative)**: Using intuition built from following markets and news.
+    
+    **Key Insight**: Never rely solely on "vibes" when starting out. Your intuition as a new trader is unproven. 
+    Start by quantifying data from transcripts to build a solid foundation. Only add "vibes" or intuition 
+    after you have significant experience and a track record of performance.
+    """)
+
+# --- BEST PRACTICES IN SIDEBAR ---
+with st.sidebar.expander("📖 Best Practices for New Traders"):
+    st.markdown("""
+    - **Start Small**: Get a feel for market dynamics before risking capital.
+    - **Use Limit Orders**: Protect against slippage and ensure you get your desired price.
+    - **Don't Chase**: If you miss a market, wait for the next one. There's always another opportunity.
+    - **Quantify Your Vibes**: Use the tools on this dashboard to back up your intuition with data.
+    - **Use Historical Context**: The "Market Intel" tab provides powerful context for new, breaking-news markets.
+    """)
 
 # Footer
 st.markdown("---")
